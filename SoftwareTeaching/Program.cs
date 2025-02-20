@@ -18,28 +18,20 @@ using (StreamReader reader = new StreamReader($"{DIR}course.txt"))
 Console.WriteLine($"Hallgatok szama: {hallgatok.Count}");
 
 // 2. feladat
-var f2 = hallgatok.Average(a => a.BackendEredmeny);
-Console.WriteLine($"Hallgatok atlaga backend fejlesztes modulbol: {f2}");
+Console.WriteLine($"Hallgatok atlaga backend fejlesztes modulbol: {hallgatok.Average(a => a.BackendEredmeny)}");
 
 // 3. feladat
-var f3 = hallgatok.OrderByDescending(h => h.HalozatEredmeny + h.MobilEredmeny + h.FrontendEredmeny + h.BackendEredmeny).First().Nev;
-Console.WriteLine($"Az osztalyelso: {f3}");
+Console.WriteLine($"Az osztalyelso: {hallgatok.OrderByDescending(h => h.HalozatEredmeny + h.MobilEredmeny + h.FrontendEredmeny + h.BackendEredmeny).First().Nev}");
 
 // 4. feladat
-var f4 = (double)hallgatok.Count(h => h.Nem == 'm') / hallgatok.Count * 100;
-Console.WriteLine($"A ferfiak aranya a kepzesen: {f4:f2}%");
+Console.WriteLine($"A ferfiak aranya a kepzesen: {(double)hallgatok.Count(h => h.Nem == 'm') / hallgatok.Count * 100:f2}%");
 
 // 5. feladat
-var f5 = hallgatok.Where(h => h.Nem == 'f').OrderByDescending(h => h.FrontendEredmeny + h.BackendEredmeny).First().Nev;
-Console.WriteLine($"A legjobb noi webfejleszto: {f5}");
+Console.WriteLine($"A legjobb noi webfejleszto: {hallgatok.Where(h => h.Nem == 'f').OrderByDescending(h => h.FrontendEredmeny + h.BackendEredmeny).First().Nev}");
 
 // 6. feladat
-var f6 = hallgatok.Where(h => h.Befizetes == 2600).ToList();
-Console.WriteLine($"Elofinanszirozta a teljes osszeget: ");
-foreach (var item in f6)
-{
-    Console.WriteLine($"\t{item.Nev}");
-}
+Console.WriteLine("Elofinanszirozta a teljes osszeget: ");
+hallgatok.Where(h => h.Befizetes == 2600).ToList().ForEach(item => Console.WriteLine($"\t{item.Nev}"));
 
 // 7. feladat
 Console.Write("Adj meg egy nevet: ");
@@ -90,15 +82,10 @@ var f8 = hallgatok.Where(h => h.HalozatEredmeny == 100 || h.MobilEredmeny == 100
 Console.WriteLine($"A 100%-os es javitovizsga nelkuli hallgatok szama: {f8}");
 
 // 9. feladat
-var halozatJavito = hallgatok.Count(h => h.HalozatEredmeny < 51);
-var mobilJavito = hallgatok.Count(h => h.MobilEredmeny < 51);
-var frontendJavito = hallgatok.Count(h => h.FrontendEredmeny < 51);
-var backendJavito = hallgatok.Count(h => h.BackendEredmeny < 51);
-
-Console.WriteLine($"Halozatbol javitovizsgat kell tennie: {halozatJavito}");
-Console.WriteLine($"Mobilfejlesztesbol javitovizsgat kell tennie: {mobilJavito}");
-Console.WriteLine($"Frontend fejlesztesbol javitovizsgat kell tennie: {frontendJavito}");
-Console.WriteLine($"Backend fejlesztesbol javitovizsgat kell tennie: {backendJavito}");
+Console.WriteLine($"Halozatbol javitovizsgat kell tennie: {hallgatok.Count(h => h.HalozatEredmeny < 51)}");
+Console.WriteLine($"Mobilfejlesztesbol javitovizsgat kell tennie: {hallgatok.Count(h => h.MobilEredmeny < 51)}");
+Console.WriteLine($"Frontend fejlesztesbol javitovizsgat kell tennie: {hallgatok.Count(h => h.FrontendEredmeny < 51)}");
+Console.WriteLine($"Backend fejlesztesbol javitovizsgat kell tennie: {hallgatok.Count(h => h.BackendEredmeny < 51)}");
 
 // 10. feladat
 var rendezettHallgatok = hallgatok.OrderBy(h => h.CsaladNev()).ToList();
