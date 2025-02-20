@@ -1,4 +1,4 @@
-﻿class Hallgatok
+class Hallgatok
 {
 
     public string Nev { get; set; }
@@ -13,12 +13,12 @@
     {
 
         string[] sl = line.Split(';');
-        
+
         Nev = sl[0];
         Nem = char.Parse(sl[1]);
         Befizetes = int.Parse(sl[2]);
         HalozatEredmeny = int.Parse(sl[3]);
-        MobilEredmeny= int.Parse(sl[4]);
+        MobilEredmeny = int.Parse(sl[4]);
         FrontendEredmeny = int.Parse(sl[5]);
         BackendEredmeny = int.Parse(sl[6]);
 
@@ -36,7 +36,7 @@
 
     public override string ToString()
     {
-        return $"{Nev}, {Nem}, {Befizetes}, {HalozatEredmeny}, {MobilEredmeny}, {FrontendEredmeny}, {BackendEredmeny}, Atlagos eredmeny: {AtlagEredmeny():F2}";
+        return $"{Nev} - {AtlagEredmeny()}%";
     }
 
 }
